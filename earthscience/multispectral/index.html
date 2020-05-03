@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+
+    
+    <title>Multispectral - Journal</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../../css/base.min.css" rel="stylesheet">
+    <link href="../../css/cinder.min.css" rel="stylesheet">
+
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            <a class="navbar-brand" href="../..">Journal</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="../..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="dropdown active">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Theory <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                        
+                            
+  <li class="dropdown-submenu">
+    <a tabindex="-1" href="">Earth Science</a>
+    <ul class="dropdown-menu">
+        
+            
+<li >
+    <a href="../info/">Info</a>
+</li>
+
+        
+            
+<li >
+    <a href="../databases/">Databases</a>
+</li>
+
+        
+            
+<li class="active">
+    <a href="./">Multispectral</a>
+</li>
+
+        
+    </ul>
+  </li>
+
+                        
+                            
+<li >
+    <a href="../../code/info/">Code</a>
+</li>
+
+                        
+                            
+<li >
+    <a href="../../audio/info/">Audio Signal Processing</a>
+</li>
+
+                        
+                        </ul>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../../about/">About</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../databases/">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../../code/info/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#multispectral-remote-sensing-data">Multispectral Remote Sensing Data</a></li>
+            <li class="second-level"><a href="#gis">GIS</a></li>
+                
+            <li class="second-level"><a href="#file-formats">File formats</a></li>
+                
+        <li class="first-level "><a href="#data-structures">Data structures</a></li>
+            <li class="second-level"><a href="#xarray">Xarray</a></li>
+                
+            <li class="second-level"><a href="#geopandas">GeoPandas</a></li>
+                
+            <li class="second-level"><a href="#raster">Raster</a></li>
+                
+            <li class="second-level"><a href="#projection">Projection</a></li>
+                
+            <li class="second-level"><a href="#pan-sharpening">Pan-sharpening</a></li>
+                
+            <li class="second-level"><a href="#radiance-to-reflectance">Radiance to reflectance</a></li>
+                
+            <li class="second-level"><a href="#spectral-response-functions-srfs">Spectral response functions (SRFs)</a></li>
+                
+            <li class="second-level"><a href="#tutorials">Tutorials</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="multispectral-remote-sensing-data">Multispectral Remote Sensing Data</h1>
+<h2 id="gis">GIS</h2>
+<p>Standard of encoding Geographical Information into a computer file.</p>
+<h2 id="file-formats">File formats</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>properties</th>
+<th>extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>netCDF (Network Common Data Form)</td>
+<td>File format with climate and Forecast (CF) metadata for earth science data. Binary storage in open format with optional compression.</td>
+<td>.nc</td>
+</tr>
+<tr>
+<td>GeoTIFF</td>
+<td>TIFF format which includes GIS compatible georeferencing systems. Byte data [0, 255] and colour scale.</td>
+<td>.tif / .tiff</td>
+</tr>
+<tr>
+<td>TIFF (Tagged Image File Format)</td>
+<td>Computer file format for storing raster graphics images.</td>
+<td>.tif / .tiff</td>
+</tr>
+<tr>
+<td>Shapefile</td>
+<td>Standard for representing geospatial vector data. Describes geometries as points, polylines or polygons.</td>
+<td>.shp</td>
+</tr>
+</tbody>
+</table>
+<h1 id="data-structures">Data structures</h1>
+<h2 id="xarray">Xarray</h2>
+<p>Default package for handling spatial-temporal-variable datasets. In the format (latitude x longitude x time x variable)</p>
+<h2 id="geopandas">GeoPandas</h2>
+<p>To store data from shapefiles.</p>
+<h2 id="raster">Raster</h2>
+<p>Data stored as a grid of values which are rendered on a map as pixels.
+Each pixel value represents an area on the Earth's surface.</p>
+<ul>
+<li>Each cell --&gt; pixel --&gt; area on the ground</li>
+<li>Resolution --&gt; area that each pixel represents on the ground.</li>
+</ul>
+<h2 id="projection">Projection</h2>
+<p>EPSG code = standard to name projections using a numerical code</p>
+<h2 id="pan-sharpening">Pan-sharpening</h2>
+<p>Some characteristics of some of the most used sensors</p>
+<table>
+<thead>
+<tr>
+<th>Sensor</th>
+<th>Spatial resolution</th>
+<th>Temporal resolution</th>
+<th>Spectral resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Landsat TM</td>
+<td>30 m</td>
+<td>16 days</td>
+<td>7 bands</td>
+</tr>
+<tr>
+<td>MODIS</td>
+<td>250 - 100 m</td>
+<td>1 day</td>
+<td>36 bands</td>
+</tr>
+</tbody>
+</table>
+<p>Pansharpening is a process of merging high-resolution panchromatic and lower resolution
+multispectral imagery to create a single high-resolution color image.</p>
+<h2 id="radiance-to-reflectance">Radiance to reflectance</h2>
+<p>Radiance is the variable directly measured by temote sensing instruments. It is how much light the
+instrument 'sees' from the object being observed. Depends on the illumination, the orientation and position
+of the target and the path of the light through the atmosphere.</p>
+<p>Reflectance is the ratio of the amount of light leaving a a target to the amount of light striking 
+the target. It is a property of the material being observed.</p>
+<h2 id="spectral-response-functions-srfs">Spectral response functions (SRFs)</h2>
+<p>Spectral response describes the sensitivity of the photosensor to optical radiation of different wavelengths.</p>
+<h2 id="tutorials">Tutorials</h2>
+<ul>
+<li>Earth Lab: <a href="https://www.earthdatascience.org/courses/use-data-open-source-python/multispectral-remote-sensing/">Multispectral remote sensing data in python</a> </li>
+<li>Differential calculus: <a href="https://colab.research.google.com/github/ageron/handson-ml2/blob/master/math_differential_calculus.ipynb">python colab</a></li>
+</ul></div>
+        
+        
+    </div>
+
+    <footer class="col-md-12 text-center">
+        
+        <hr>
+        <p>
+        <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+        </p>
+
+        
+        
+    </footer>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../js/bootstrap-3.0.3.min.js"></script>
+    
+    <script>var base_url = "../.."</script>
+    
+    <script src="../../js/base.js"></script>
+    <script src="../../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
