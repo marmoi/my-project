@@ -449,6 +449,65 @@ Each pixel value represents an area on the Earth's surface.</p>
 <li>Each cell --&gt; pixel --&gt; area on the ground</li>
 <li>Resolution --&gt; area that each pixel represents on the ground.</li>
 </ul>
+<h3 id="calculate-ndvi-from-landsat-crop-image">Calculate NDVI from Landsat crop image</h3>
+<p>Import the necessary packages</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">rasterio</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Load data</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">imagePath</span> <span class="o">=</span> <span class="s1">&#39;Landsat_collect/LC080340322016072301T1-SC20180214145802/crop/&#39;</span>
+<span class="n">imageFiles</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">imagePath</span><span class="o">+</span><span class="s1">&#39;*_band*.tif&#39;</span><span class="p">)</span>
+<span class="n">band4</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imageFiles</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1">#red</span>
+<span class="n">band5</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imageFiles</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="c1">#nir</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Generate nir and red objects as arrays in float64 format</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">nir</span> <span class="o">=</span> <span class="n">band5</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+<span class="n">red</span> <span class="o">=</span> <span class="n">band4</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>NDVI calculation, empty cells or nodata cells are reported as 0</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">ndvi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">nir</span><span class="o">+</span><span class="n">red</span><span class="p">)</span><span class="o">==</span><span class="mf">0.</span><span class="p">,</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">nir</span><span class="o">-</span><span class="n">red</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">nir</span><span class="o">+</span><span class="n">red</span><span class="p">)</span>
+               <span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+
+<p>Export ndvi image</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">ndviImage</span> <span class="o">=</span> <span class="n">rasterio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;ndviImage.tiff&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">driver</span><span class="o">=</span><span class="s1">&#39;Gtiff&#39;</span><span class="p">,</span>
+                          <span class="n">width</span><span class="o">=</span><span class="n">band4</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">band4</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
+                          <span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                          <span class="n">crs</span><span class="o">=</span><span class="n">band4</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                          <span class="n">transform</span><span class="o">=</span><span class="n">band4</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
+                          <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span>                  
+                         <span class="p">)</span>
+<span class="n">ndviImage</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">ndviImage</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+
+<p><img alt="" src="../ndvi.png" title="NDVI image green cmap" /></p>
 <h2 id="projection">Projection</h2>
 <p>EPSG code = standard to name projections using a numerical code</p>
 <h2 id="pan-sharpening">Pan-sharpening</h2>
