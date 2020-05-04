@@ -69,7 +69,7 @@
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../.." title="Journal" class="md-header-nav__button md-logo" aria-label="Journal">
       
-  <img src="../../images/indice.svg" alt="logo">
+  <img src="../../images/icon.svg" alt="logo">
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
@@ -142,7 +142,7 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Journal" class="md-nav__button md-logo" aria-label="Journal">
       
-  <img src="../../images/indice.svg" alt="logo">
+  <img src="../../images/icon.svg" alt="logo">
 
     </a>
     Journal
@@ -471,23 +471,6 @@ its input variables. "Tape" records all the operations executed.</p>
 </td></tr></table>
 
 <p>Start the training process</p>
-<p>```python hl_lines=30 31 32 33 34</p>
-<h1 id="load-the-defined-dnn-model">Load the defined DNN model</h1>
-<p>model = get_net(weight_init) </p>
-<h1 id="initialize-control-training-values">Initialize control training values</h1>
-<p>train_loss_results = []
-validation_loss_results = []
-stop = False
-last_improvement = 0
-last_improvement_total = 0
-epoch = 0
-best_loss = 100</p>
-<h1 id="calculate-batches-for-training-and-validation">Calculate batches for training and validation</h1>
-<p>bat_per_epoch = math.floor(len(X_train) / batch_size)
-bat_per_epoch_val = math.floor(len(X_val) / batch_size)</p>
-<h1 id="training-loop">Training loop</h1>
-<p>while epoch &lt; epochs and stop == False:#for epoch in range(epochs):
-    #print(f'Epoch: {epoch}/{epochs}')</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -551,74 +534,113 @@ bat_per_epoch_val = math.floor(len(X_val) / batch_size)</p>
 61
 62
 63
-64</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">epoch_train_loss_avg</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="n">Mean</span><span class="p">()</span>
-<span class="n">epoch_val_loss_avg</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="n">Mean</span><span class="p">()</span>
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1"># Load the defined DNN model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_net</span><span class="p">(</span><span class="n">weight_init</span><span class="p">)</span> 
 
-<span class="o">#</span> <span class="n">Run</span> <span class="n">train</span> <span class="n">batch</span> <span class="n">loop</span>
-<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bat_per_epoch</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">batch_size</span>
-    <span class="n">X_batch</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="o">#</span><span class="n">X_train</span><span class="p">[</span><span class="n">ids_train</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]]</span>
-    <span class="n">y_batch</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="o">#</span><span class="n">y_train</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="n">ids_train</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">])</span>
+<span class="c1"># Initialize control training values</span>
+<span class="n">train_loss_results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">validation_loss_results</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">stop</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">last_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">last_improvement_total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">epoch</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">best_loss</span> <span class="o">=</span> <span class="mi">100</span>
 
-    <span class="k">with</span> <span class="n">tf</span><span class="p">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
-        <span class="o">#</span> <span class="n">Make</span> <span class="n">prediction</span>
-        <span class="n">pred_y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_batch</span><span class="p">)</span>
-        <span class="o">#</span> <span class="n">Calculate</span> <span class="n">loss</span>
-        <span class="n">train_loss</span> <span class="o">=</span> <span class="n">modelLoss</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y_batch</span><span class="p">.</span><span class="k">values</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">pred_y</span><span class="p">)</span>
+<span class="c1"># Calculate batches for training and validation</span>
+<span class="n">bat_per_epoch</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_train</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
+<span class="n">bat_per_epoch_val</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_val</span><span class="p">)</span> <span class="o">/</span> <span class="n">batch_size</span><span class="p">)</span>
 
-    <span class="o">#</span> <span class="n">Calculate</span> <span class="n">gradients</span>
-    <span class="n">model_gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="p">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">train_loss</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">)</span>
-    <span class="o">#</span> <span class="k">Update</span> <span class="n">model</span>
-    <span class="n">optimizer</span><span class="p">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="n">zip</span><span class="p">(</span><span class="n">model_gradients</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">trainable_variables</span><span class="p">))</span>
+<span class="c1"># Training loop</span>
+<span class="k">while</span> <span class="n">epoch</span> <span class="o">&lt;</span> <span class="n">epochs</span> <span class="ow">and</span> <span class="n">stop</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span><span class="c1">#for epoch in range(epochs):</span>
+    <span class="c1">#print(f&#39;Epoch: {epoch}/{epochs}&#39;)</span>
 
-    <span class="o">#</span> <span class="n">Keep</span> <span class="n">history</span> <span class="k">of</span> <span class="n">loss</span> <span class="k">values</span>     
-    <span class="n">epoch_train_loss_avg</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
+    <span class="n">epoch_train_loss_avg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">Mean</span><span class="p">()</span>
+    <span class="n">epoch_val_loss_avg</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">Mean</span><span class="p">()</span>
 
-<span class="o">#</span><span class="k">End</span> <span class="n">training</span> <span class="n">batch</span>
-<span class="n">train_loss_results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_train_loss_avg</span><span class="p">.</span><span class="k">result</span><span class="p">())</span>
+    <span class="c1"># Run train batch loop</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">bat_per_epoch</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">batch_size</span>
+        <span class="n">X_batch</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="c1">#X_train[ids_train[n:n+batch_size]]</span>
+        <span class="n">y_batch</span> <span class="o">=</span> <span class="n">y_train</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="c1">#y_train.take(ids_train[n:n+batch_size])</span>
 
-<span class="o">#</span> <span class="n">Run</span> <span class="n">a</span> <span class="n">validation</span> <span class="n">loop</span> <span class="k">at</span> <span class="n">the</span> <span class="k">end</span> <span class="k">of</span> <span class="k">each</span> <span class="n">training</span> <span class="n">epoch</span>  
-<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="n">range</span><span class="p">(</span><span class="n">bat_per_epoch_val</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">batch_size</span>
-    <span class="n">X_batch</span> <span class="o">=</span> <span class="n">X_val</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="o">#</span><span class="n">X_val</span><span class="p">[</span><span class="n">ids_val</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]]</span>
-    <span class="n">y_batch</span> <span class="o">=</span> <span class="n">y_val</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="o">#</span><span class="n">y_val</span><span class="p">.</span><span class="n">take</span><span class="p">(</span><span class="n">ids_val</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">])</span>
+<span class="hll">        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">GradientTape</span><span class="p">()</span> <span class="k">as</span> <span class="n">tape</span><span class="p">:</span>
+</span><span class="hll">            <span class="c1"># Make prediction</span>
+</span><span class="hll">            <span class="n">pred_y</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_batch</span><span class="p">)</span>
+</span><span class="hll">            <span class="c1"># Calculate loss</span>
+</span><span class="hll">            <span class="n">train_loss</span> <span class="o">=</span> <span class="n">modelLoss</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y_batch</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">pred_y</span><span class="p">)</span>
+</span>
+        <span class="c1"># Calculate gradients</span>
+        <span class="n">model_gradients</span> <span class="o">=</span> <span class="n">tape</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">train_loss</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">)</span>
+        <span class="c1"># Update model</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">apply_gradients</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">model_gradients</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">trainable_variables</span><span class="p">))</span>
 
-    <span class="o">#</span> <span class="n">Make</span> <span class="n">prediction</span>
-    <span class="n">val_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_batch</span><span class="p">)</span>
-    <span class="n">val_loss</span> <span class="o">=</span> <span class="n">val_mse_loss</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y_batch</span><span class="p">.</span><span class="k">values</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">val_pred</span><span class="p">)</span>
+        <span class="c1"># Keep history of loss values     </span>
+        <span class="n">epoch_train_loss_avg</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">train_loss</span><span class="p">)</span>
 
-    <span class="o">#</span> <span class="n">Keep</span> <span class="n">history</span> <span class="k">of</span> <span class="n">validation</span> <span class="n">loss</span> <span class="k">values</span>
-    <span class="n">epoch_val_loss_avg</span><span class="p">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
+    <span class="c1">#End training batch</span>
+    <span class="n">train_loss_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_train_loss_avg</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
 
-    <span class="o">#</span> <span class="k">Read</span> <span class="k">out</span> <span class="n">training</span> <span class="n">results</span>
-    <span class="o">#</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Validation loss: {val_loss}&#39;</span><span class="p">)</span> 
-<span class="o">#</span><span class="k">End</span> <span class="n">validation</span> <span class="n">batch</span>
-<span class="n">validation_loss_results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_val_loss_avg</span><span class="p">.</span><span class="k">result</span><span class="p">())</span>
+    <span class="c1"># Run a validation loop at the end of each training epoch  </span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bat_per_epoch_val</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">batch_size</span>
+        <span class="n">X_batch</span> <span class="o">=</span> <span class="n">X_val</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="c1">#X_val[ids_val[n:n+batch_size]]</span>
+        <span class="n">y_batch</span> <span class="o">=</span> <span class="n">y_val</span><span class="p">[</span><span class="n">n</span><span class="p">:</span><span class="n">n</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="c1">#y_val.take(ids_val[n:n+batch_size])</span>
 
-<span class="n">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;Epoch: {epoch}/{epochs} Loss:{epoch_train_loss_avg.result()}, Val_loss: {epoch_val_loss_avg.result()}&#39;</span><span class="p">)</span>
+        <span class="c1"># Make prediction</span>
+        <span class="n">val_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_batch</span><span class="p">)</span>
+        <span class="n">val_loss</span> <span class="o">=</span> <span class="n">val_mse_loss</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">y_batch</span><span class="o">.</span><span class="n">values</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">val_pred</span><span class="p">)</span>
 
-<span class="o">#</span> <span class="n">Custom</span> <span class="n">callback</span> <span class="n">functions</span>
-<span class="k">if</span> <span class="n">epoch_val_loss_avg</span><span class="p">.</span><span class="k">result</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
-    <span class="n">best_loss</span> <span class="o">=</span> <span class="n">epoch_val_loss_avg</span><span class="p">.</span><span class="k">result</span><span class="p">()</span>
-    <span class="n">last_improvement</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="k">else</span><span class="p">:</span>
-    <span class="n">last_improvement</span> <span class="o">+=</span> <span class="mi">1</span>
-<span class="o">#</span> <span class="n">Reduce</span> <span class="n">learning</span> <span class="n">rate</span> <span class="k">if</span> <span class="n">validation</span> <span class="n">loss</span> <span class="n">does</span> <span class="k">not</span> <span class="n">decrease</span> <span class="k">for</span> <span class="mi">10</span> <span class="n">epochs</span>
-<span class="k">if</span> <span class="n">last_improvement</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
-    <span class="n">lr</span> <span class="o">=</span> <span class="n">optimizer</span><span class="p">.</span><span class="n">lr</span><span class="p">.</span><span class="n">numpy</span><span class="p">()</span>
-    <span class="n">optimizer</span><span class="p">.</span><span class="n">lr</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">lr</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
-    <span class="n">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;No improvement, reduce learning rate {lr/10}&#39;</span><span class="p">)</span>
-    <span class="n">last_improvement_total</span> <span class="o">=</span> <span class="n">last_improvement</span>
-    <span class="n">last_improvement</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="o">#</span> <span class="n">Stop</span> <span class="n">training</span> <span class="k">if</span> <span class="n">validation</span> <span class="n">loss</span> <span class="n">does</span> <span class="k">not</span> <span class="n">decrease</span> <span class="k">for</span> <span class="mi">20</span> <span class="n">epochs</span>
-<span class="k">if</span> <span class="n">last_improvement_total</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
-    <span class="n">print</span><span class="p">(</span><span class="n">f</span><span class="s1">&#39;No improvement after 20 epochs. Stop training&#39;</span><span class="p">)</span>
-    <span class="n">stop</span> <span class="o">=</span> <span class="k">True</span>
-<span class="n">epoch</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># Keep history of validation loss values</span>
+        <span class="n">epoch_val_loss_avg</span><span class="o">.</span><span class="n">update_state</span><span class="p">(</span><span class="n">val_loss</span><span class="p">)</span>
+
+        <span class="c1"># Read out training results</span>
+        <span class="c1">#(f&#39;Validation loss: {val_loss}&#39;) </span>
+    <span class="c1">#End validation batch</span>
+    <span class="n">validation_loss_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_val_loss_avg</span><span class="o">.</span><span class="n">result</span><span class="p">())</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">epochs</span><span class="si">}</span><span class="s1"> Loss:</span><span class="si">{</span><span class="n">epoch_train_loss_avg</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="si">}</span><span class="s1">, Val_loss: </span><span class="si">{</span><span class="n">epoch_val_loss_avg</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Custom callback functions</span>
+    <span class="k">if</span> <span class="n">epoch_val_loss_avg</span><span class="o">.</span><span class="n">result</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">best_loss</span><span class="p">:</span>
+        <span class="n">best_loss</span> <span class="o">=</span> <span class="n">epoch_val_loss_avg</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+        <span class="n">last_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">last_improvement</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="c1"># Reduce learning rate if validation loss does not decrease for 10 epochs</span>
+    <span class="k">if</span> <span class="n">last_improvement</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">lr</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">lr</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span><span class="n">lr</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No improvement, reduce learning rate </span><span class="si">{</span><span class="n">lr</span><span class="o">/</span><span class="mi">10</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">last_improvement_total</span> <span class="o">=</span> <span class="n">last_improvement</span>
+        <span class="n">last_improvement</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Stop training if validation loss does not decrease for 20 epochs</span>
+    <span class="k">if</span> <span class="n">last_improvement_total</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;No improvement after 20 epochs. Stop training&#39;</span><span class="p">)</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">epoch</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div>
 </td></tr></table>
 
-<p>```</p>
 <p><img alt="" src="../train_result.png" title="Seaborn plot" /></p>
                 
               
