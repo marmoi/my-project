@@ -396,23 +396,38 @@
 <p><strong>Latent variables</strong>: variables that are not directly observed. They are inferred from other 
 variables that are observed. Useful to reduce dimensionality of data.</p>
 <p><strong>MMD</strong> (Maximum Mean Discrepancy): distance between feature means</p>
-<p>$$
-\text{cov}(\mathbf{X}, \mathbf{Y}) = ||K_\mathbf{x}||<em>\mathcal{F} + ||K</em>\mathbf{y}||<em>\mathcal{F}  -  2\langle \tilde{K}</em>\mathbf{x}, \tilde{K}<em>\mathbf{y} \rangle</em>\mathcal{F}</p>
-<p>$$</p>
+<div>
+<div class="MathJax_Preview">
+\text{cov}(\mathbf{X}, \mathbf{Y}) = ||K_\mathbf{x}||_\mathcal{F} + ||K_\mathbf{y}||_\mathcal{F}  -  2\langle \tilde{K}_\mathbf{x}, \tilde{K}_\mathbf{y} \rangle_\mathcal{F}
+</div>
+<script type="math/tex; mode=display">
+\text{cov}(\mathbf{X}, \mathbf{Y}) = ||K_\mathbf{x}||_\mathcal{F} + ||K_\mathbf{y}||_\mathcal{F}  -  2\langle \tilde{K}_\mathbf{x}, \tilde{K}_\mathbf{y} \rangle_\mathcal{F}
+</script>
+</div>
+<div>
+<div class="MathJax_Preview">
+MMD^2[F,X,Y]  = \fraq{1}{m(m−1)}\sum_i \sum_j k(x_i,x_j)+ \fraq{1}{n(n−1)}\sum_i \sum_j k(y_i,y_j)− \fraq{2}{mn}\sum_i \sum_j k(x_i,x_j)k(x_i,y_j)
+</div>
+<script type="math/tex; mode=display">
+MMD^2[F,X,Y]  = \fraq{1}{m(m−1)}\sum_i \sum_j k(x_i,x_j)+ \fraq{1}{n(n−1)}\sum_i \sum_j k(y_i,y_j)− \fraq{2}{mn}\sum_i \sum_j k(x_i,x_j)k(x_i,y_j)
+</script>
+</div>
+<p>??? <img alt="📝" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4dd.svg" title=":memo:" /> ""
+    <a href="http://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf">Source</a> A Kernel Two-Sample Test
+    page 6</p>
 <p><strong>KLD</strong> (Kullback-Leibler Divergence): Scores how one distribution differs from another.</p>
 <p><strong>RKHS</strong> (Reproducing Kernel Hilbert Spaces)</p>
 <p><strong>KRR</strong> (Kernel Ridge Regression): Kernel method. Ridge regression: particular case of a quadratic
 regularized.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">:blue_book: **Note: Cool Feature**</span>
-</code></pre></div>
-</td></tr></table>
-
-<p>Information here</p>
+<blockquote>
+<p><img alt="📘" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4d8.svg" title=":blue_book:" /> <strong>Note: Cool Feature</strong>
+Information here</p>
+</blockquote>
 <p><img alt="📝" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4dd.svg" title=":memo:" /> <strong>Title</strong>
 Here start a block</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">:book: content</span>
-<span class="err">Some more content</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">&gt;:book: content</span>
+<span class="err">&gt;Some more content</span>
 </code></pre></div>
 </td></tr></table>
                 
