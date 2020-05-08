@@ -512,40 +512,49 @@
                 
                 <h1 id="error-propagation">Error propagation</h1>
 <p>Equation of the error propagation law</p>
-<p>$C_y = F_X C_X F_X^T $</p>
+<div>
+<div class="MathJax_Preview">
+C_y = F_X C_X F_X^T
+</div>
+<script type="math/tex; mode=display">
+C_y = F_X C_X F_X^T
+</script>
+</div>
 <p>Applications: error propagation in model-based vision, Kalman filtering, reliability or 
 probabilistic systems analysis.</p>
 <div class="admonition cite">
 <p>Error propagation is the problem of finding the distribution of a function of random variables.</p>
 </div>
 <p>Given a mathematical model <span><span class="MathJax_Preview">Y = f(X)</span><script type="math/tex">Y = f(X)</script></span>, if <span><span class="MathJax_Preview">f(·)</span><script type="math/tex">f(·)</script></span> is non-linear we try to approximate the probability 
-distribution function of <span><span class="MathJax_Preview">Y</span><script type="math/tex">Y</script></span> (<span><span class="MathJax_Preview">p_Y(y)</span><script type="math/tex">p_Y(y)</script></span>) by the propagation of the first two statistical moments:
-- mean <span><span class="MathJax_Preview">\mu_Y</span><script type="math/tex">\mu_Y</script></span>
-- variance <span><span class="MathJax_Preview">\sigma_Y^2</span><script type="math/tex">\sigma_Y^2</script></span> (the second central moment)</p>
-<p>!!! <img alt="📝" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4dd.svg" title=":memo:" /> "Remember"
-    - Standard deviation <span><span class="MathJax_Preview">\sigma</span><script type="math/tex">\sigma</script></span> = distance between the most probable value (<span><span class="MathJax_Preview">\mu</span><script type="math/tex">\mu</script></span>) and the curve's 
-    turning points.
-    - Property of normal distribution: Gaussian stays Gaussian under linear transformations.</p>
+distribution function (<span><span class="MathJax_Preview">p_Y(y)</span><script type="math/tex">p_Y(y)</script></span>) of <span><span class="MathJax_Preview">Y</span><script type="math/tex">Y</script></span> by the propagation of the first two statistical moments:</p>
+<ul>
+<li>mean <span><span class="MathJax_Preview">\mu_Y</span><script type="math/tex">\mu_Y</script></span></li>
+<li>variance <span><span class="MathJax_Preview">\sigma_Y^2</span><script type="math/tex">\sigma_Y^2</script></span> (the second central moment)</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Remember</p>
+<ul>
+<li>Standard deviation <span><span class="MathJax_Preview">\sigma</span><script type="math/tex">\sigma</script></span> = distance between the most probable value (<span><span class="MathJax_Preview">\mu</span><script type="math/tex">\mu</script></span>) and the curve's 
+turning points.</li>
+<li>Property of normal distribution: Gaussian stays Gaussian under linear transformations.</li>
+</ul>
+</div>
 <p>By using first-order Taylor series expansion we obtain a linear relationship in order to determine the 
 parameters <span><span class="MathJax_Preview">\mu_Y</span><script type="math/tex">\mu_Y</script></span> and <span><span class="MathJax_Preview">\sigma_Y</span><script type="math/tex">\sigma_Y</script></span>, which approximate the unknown truth, by a normal distribution for <span><span class="MathJax_Preview">p_Y(y)</span><script type="math/tex">p_Y(y)</script></span>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code>    <span class="n">Notation</span>
-
-    <span class="err">$</span><span class="n">x</span><span class="o">^*</span><span class="err">$</span> <span class="n">guess</span> <span class="k">of</span> <span class="n">the</span> <span class="n">expected</span> <span class="n">value</span><span class="p">.</span>
-</code></pre></div>
-</td></tr></table>
-
+<div class="admonition info">
+<p class="admonition-title">Notation</p>
+<p><span><span class="MathJax_Preview">x^*</span><script type="math/tex">x^*</script></span> guess of the expected value.</p>
+</div>
 <p>Considering multi-input and multi-output system we apply first order Taylor series expansion and then reformulate
  the output equations to obtain their matrix form. </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="err">    - Jacobian $F_X$ is the transpose of the gradient of \mathbb{f}(X)</span>
-<span class="err">    - $C_X$ is the input covarience matrix, which contains all variances and covariances of the input</span>
-<span class="err">    random variables.</span>
-</code></pre></div>
-</td></tr></table>
-
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<ul>
+<li>Jacobian <span><span class="MathJax_Preview">F_X</span><script type="math/tex">F_X</script></span> is the transpose of the gradient of \mathbb{f}(X)</li>
+<li><span><span class="MathJax_Preview">C_X</span><script type="math/tex">C_X</script></span> is the input covarience matrix, which contains all variances and covariances of the input
+random variables.</li>
+</ul>
+</div>
 <p>The input uncertainty <span><span class="MathJax_Preview">C_X</span><script type="math/tex">C_X</script></span> is propagated through the system <span><span class="MathJax_Preview">f(·)</span><script type="math/tex">f(·)</script></span> and approximatively mapped to the 
 output <span><span class="MathJax_Preview">C_Y</span><script type="math/tex">C_Y</script></span>.</p>
 <h2 id="taylor-series">Taylor Series</h2>

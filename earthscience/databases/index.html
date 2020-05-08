@@ -590,39 +590,8 @@ It has a spatial resolution of 500m and a Multi-day temporal resolution.</p>
 <li>url: <a href="https://land.copernicus.vgt.vito.be/PDF/portal/Application.html#Home">portal</a></li>
 <li>output files: GeoTIFF if the product is clipped, otherwise is NETCDF</li>
 </ul>
-<p>Example of plotting LAI values from a downloaded product.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<p>Example of plotting LAI values from a downloaded product.
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap</span>
@@ -654,9 +623,7 @@ It has a spatial resolution of 500m and a Multi-day temporal resolution.</p>
 <span class="n">cbar</span> <span class="o">=</span> <span class="n">mp</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">c_scheme</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="s1">&#39;10%&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LAI values&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
-</td></tr></table>
-
+</code></pre></div></p>
 <p><img alt="" src="../map.png" title="Spain map" /></p>
                 
               
