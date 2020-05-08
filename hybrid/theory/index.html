@@ -339,6 +339,26 @@
     Measures of similarity
   </a>
   
+    <nav class="md-nav" aria-label="Measures of similarity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distance-based" class="md-nav__link">
+    Distance-based:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-divergences" class="md-nav__link">
+    F-divergences:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -478,6 +498,26 @@
     Measures of similarity
   </a>
   
+    <nav class="md-nav" aria-label="Measures of similarity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distance-based" class="md-nav__link">
+    Distance-based:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f-divergences" class="md-nav__link">
+    F-divergences:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -512,15 +552,20 @@ regularized.</p>
 to reconstruct an input <span><span class="MathJax_Preview">x</span><script type="math/tex">x</script></span> given its latent representation <span><span class="MathJax_Preview">z</span><script type="math/tex">z</script></span>.</p>
 <p><strong>ELBO</strong> (Evidence Lower BOund): to approximate posterior inference</p>
 <h2 id="measures-of-similarity">Measures of similarity</h2>
-<p>!!! <img alt="📝" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f4dd.svg" title=":memo:" /> ""
-    <span><span class="MathJax_Preview">\mathbf{P} = \mathbb{P}_{x,y}</span><script type="math/tex">\mathbf{P} = \mathbb{P}_{x,y}</script></span> the join distribution
-    <span><span class="MathJax_Preview">\mathbf{Q} = \mathbb{P}_x \mathbb{P}_y</span><script type="math/tex">\mathbf{Q} = \mathbb{P}_x \mathbb{P}_y</script></span> Marginal distributions</p>
+<div class="admonition note">
+<ul>
+<li><span><span class="MathJax_Preview">\mathbf{P} = \mathbb{P}_{x,y}</span><script type="math/tex">\mathbf{P} = \mathbb{P}_{x,y}</script></span> the join distribution</li>
+<li><span><span class="MathJax_Preview">\mathbf{Q} = \mathbb{P}_x \mathbb{P}_y</span><script type="math/tex">\mathbf{Q} = \mathbb{P}_x \mathbb{P}_y</script></span> Marginal distributions</li>
+</ul>
+</div>
 <p><strong>MDN</strong> (Mixture Density Network): they predict the expected value of a target while also predicting the 
-underlying probability distribution. Requisits: 
-- Minimize the negative logarithm of the PDF.
-- To have an output node for each parameter of the distribution's variables.
-- Validate that the distribution's PDF is differentiable.</p>
-<p>Distance-based:</p>
+underlying probability distribution. Requisits: </p>
+<ul>
+<li>Minimize the negative logarithm of the PDF.</li>
+<li>To have an output node for each parameter of the distribution's variables.</li>
+<li>Validate that the distribution's PDF is differentiable.</li>
+</ul>
+<h3 id="distance-based">Distance-based:</h3>
 <p><strong>MMD</strong> (Maximum Mean Discrepancy): distance between feature means.</p>
 <div>
 <div class="MathJax_Preview">
@@ -546,14 +591,14 @@ MMD^2 = \frac{1}{m(m−1)}\sum_i \sum_j k(x_i,x_j)+ \frac{1}{n(n−1)}\sum_i \su
 MMD^2 = \frac{1}{m(m−1)}\sum_i \sum_j k(x_i,x_j)+ \frac{1}{n(n−1)}\sum_i \sum_j k(y_i,y_j)− \frac{2}{mn}\sum_i \sum_j k(x_i,x_j)k(x_i,y_j)
 </script>
 </div>
-<details class="note"><summary></summary><p><a href="http://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf">Source</a> 
+<details class="info"><summary></summary><p><a href="http://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf">Source</a> 
 <em>"A Kernel Two-Sample Test"</em> page 6</p>
 </details>
 <p><strong>HSIC</strong> (Hilbert-Schmidt Independence Criterion): measures independence between two distributions.
-Example of implementation using <code>Kernels</code></p>
+Example of implementation using <code>Kernels</code>.</p>
 <p>Centering the data in the kernel space: <span><span class="MathJax_Preview">\hat{K}_x = K_x H</span><script type="math/tex">\hat{K}_x = K_x H</script></span>, where <span><span class="MathJax_Preview">H</span><script type="math/tex">H</script></span> is the centering matrix.</p>
 <p><span><span class="MathJax_Preview">\frac{1}{n^2} Tr(K_x H K_y H)</span><script type="math/tex">\frac{1}{n^2} Tr(K_x H K_y H)</script></span></p>
-<p>F-divergences:</p>
+<h3 id="f-divergences">F-divergences:</h3>
 <p><strong>Bregman divergence</strong>: measures difference between two data points. Euclidean distance and KLD are instances
 of it.</p>
 <p><strong>KLD</strong> (Kullback-Leibler Divergence): Scores how one distribution differs from another.</p>
