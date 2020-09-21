@@ -15,7 +15,7 @@
     
     
       
-        <title>Datasets - Journal</title>
+        <title>Audio analysis - Journal</title>
       
     
     
@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#datasets" class="md-skip">
+        <a href="#analysing-stream-of-audio-data" class="md-skip">
           Skip to content
         </a>
       
@@ -83,7 +83,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Datasets
+              Audio analysis
             
           </span>
         </div>
@@ -166,12 +166,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
     
     <label class="md-nav__link" for="nav-2">
       Theory
@@ -391,12 +389,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-4" type="checkbox" id="nav-2-4">
     
     <label class="md-nav__link" for="nav-2-4">
       Code
@@ -420,7 +416,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../info/" title="Intro" class="md-nav__link">
+    <a href="../../code/info/" title="Intro" class="md-nav__link">
       Intro
     </a>
   </li>
@@ -430,20 +426,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="./" title="Datasets" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../../code/tf_datasets/" title="Datasets" class="md-nav__link">
       Datasets
     </a>
-    
   </li>
 
         
@@ -453,7 +440,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../python/" title="Python" class="md-nav__link">
+    <a href="../../code/python/" title="Python" class="md-nav__link">
       Python
     </a>
   </li>
@@ -507,7 +494,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../audio/info/" title="Intro" class="md-nav__link">
+    <a href="../info/" title="Intro" class="md-nav__link">
       Intro
     </a>
   </li>
@@ -519,7 +506,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../audio/techniques/" title="Techniques" class="md-nav__link">
+    <a href="../techniques/" title="Techniques" class="md-nav__link">
       Techniques
     </a>
   </li>
@@ -531,7 +518,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../audio/python/" title="Python" class="md-nav__link">
+    <a href="../python/" title="Python" class="md-nav__link">
       Python
     </a>
   </li>
@@ -543,7 +530,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../audio/representation/" title="Representation" class="md-nav__link">
+    <a href="../representation/" title="Representation" class="md-nav__link">
       Representation
     </a>
   </li>
@@ -585,8 +572,50 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#analysing-stream-of-audio-data" class="md-nav__link">
+    Analysing stream of audio data:
+  </a>
+  
+    <nav class="md-nav" aria-label="Analysing stream of audio data:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#length-variability-of-intra-and-inter-class-sound-events" class="md-nav__link">
+    Length variability of intra- and inter-class sound events:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#training-and-testing-mismatch" class="md-nav__link">
+    Training and testing mismatch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#weak-labels" class="md-nav__link">
+    Weak labels
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -602,17 +631,32 @@
                   
                 
                 
-                <h1 id="datasets">Datasets</h1>
-<p><code>tf.data.Dataset</code> allows to iterate over the dataset in a streaming fashion, so the full dataset does
-not need to fit into memory.</p>
+                  <h1>Audio analysis</h1>
+                
+                <h2 id="analysing-stream-of-audio-data">Analysing stream of audio data:</h2>
 <ul>
-<li>
-<p><code>tf.data.Dataset.zip</code></p>
-</li>
-<li>
-<p><code>tf.data.Dataset.from_tensor_slices</code>: to create the dataset from a python list</p>
+<li>Use of fixed-length batches during training.</li>
+<li>Long-short term memory (LSTM) cells to learn temporal relationships.</li>
+</ul>
+<h3 id="length-variability-of-intra-and-inter-class-sound-events">Length variability of intra- and inter-class sound events:</h3>
+<ul>
+<li>Short audio files &rarr; Zero-padded or replicate.</li>
+<li>Long audio files &rarr; Trim.</li>
+<li>Summarization strategies to aggregate temporal information at the output.</li>
+</ul>
+<h2 id="training-and-testing-mismatch">Training and testing mismatch</h2>
+<ul>
+<li>Training: perfectly isolated + supervised annotation process.</li>
+<li>Testing:  real-world conditions:<ul>
+<li>Variable-length segments.</li>
+<li>Weakly segmented events: only the presence of the events are indicated.</li>
+<li>Background noise.</li>
+</ul>
 </li>
 </ul>
+<h2 id="weak-labels">Weak labels</h2>
+<p>Automatically obtained from the metadata on the web.</p>
+<p>Such labels are always expected to be noisy due to human semantic interpretation.</p>
                 
               
               
@@ -627,41 +671,6 @@ not need to fit into memory.</p>
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../info/" title="Intro" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Intro
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../python/" title="Python" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Python
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
