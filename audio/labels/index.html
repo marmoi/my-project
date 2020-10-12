@@ -15,7 +15,7 @@
     
     
       
-        <title>Taxonomy - Journal</title>
+        <title>Labels - Journal</title>
       
     
     
@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#annotation-of-audio-events" class="md-skip">
+        <a href="#labeling" class="md-skip">
           Skip to content
         </a>
       
@@ -83,7 +83,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Taxonomy
+              Labels
             
           </span>
         </div>
@@ -547,6 +547,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../taxonomy/" title="Taxonomy" class="md-nav__link">
+      Taxonomy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -558,14 +570,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Taxonomy
+        Labels
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Taxonomy" class="md-nav__link md-nav__link--active">
-      Taxonomy
+    <a href="./" title="Labels" class="md-nav__link md-nav__link--active">
+      Labels
     </a>
     
       
@@ -584,8 +596,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#taxonomy" class="md-nav__link">
-    Taxonomy
+  <a href="#binary-class-classification" class="md-nav__link">
+    Binary-class classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-class-classification" class="md-nav__link">
+    Multi-class classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-label-classification" class="md-nav__link">
+    Single-label classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-label-classification" class="md-nav__link">
+    Multi-label classification
   </a>
   
 </li>
@@ -594,18 +627,6 @@
   
 </nav>
     
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../labels/" title="Labels" class="md-nav__link">
-      Labels
-    </a>
   </li>
 
         
@@ -706,8 +727,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#taxonomy" class="md-nav__link">
-    Taxonomy
+  <a href="#binary-class-classification" class="md-nav__link">
+    Binary-class classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-class-classification" class="md-nav__link">
+    Multi-class classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-label-classification" class="md-nav__link">
+    Single-label classification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-label-classification" class="md-nav__link">
+    Multi-label classification
   </a>
   
 </li>
@@ -728,16 +770,22 @@
                   
                 
                 
-                <h2 id="annotation-of-audio-events">Annotation of audio events</h2>
-<h3 id="taxonomy">Taxonomy</h3>
-<p>Term used in biology for classifying species. Representation of categorical data in a <strong>hierarchy</strong> (whose naturally fitting
-data structure is a tree), each element of the <strong>taxonomy</strong> is a <em>taxonomy node</em>.</p>
-<p>In order to represent it using a human-readable format we can use: <strong>JSON</strong></p>
-<h2 id="ontology">Ontology</h2>
-<p>" A specification of a conceptualization".
-Description of the concepts and relationships that can exist for an agent or a community of agents.</p>
-<h1 id="terminology-enrichment-insertion-of-new-concepts">Terminology enrichment - insertion of new concepts</h1>
-<p>Fine-tuning from BERT model to insert new concept into a terminology's hierarchy.</p>
+                <h1 id="labeling">Labeling</h1>
+<h2 id="binary-class-classification">Binary-class classification</h2>
+<p>Only two classes are available. The <em>sigmoid</em> activation function is usually chosen.</p>
+<h2 id="multi-class-classification">Multi-class classification</h2>
+<p>When there are more than two classes but only one can be right, they are mutually exclusive. 
+Then, the <em>softmax</em> activation function is the right choice.</p>
+<h2 id="single-label-classification">Single-label classification</h2>
+<p>The output can belong only to one label, then a single <em>softmax</em> activation function is needed. With this approach a single distribution 
+across all classes is learned.</p>
+<h2 id="multi-label-classification">Multi-label classification</h2>
+<p>There are more than two labels, and there are non-exclusive, meaning that more than one label can be right for the same input.
+In this scenario multiple <em>sigmoid</em> activation function are needed (each per class).</p>
+<div class="admonition quote">
+<p class="admonition-title">Note</p>
+<p>All multi-label are multi-class classifiers. But <strong>not</strong> all multi-class classifiers are multi-label classifiers.</p>
+</div>
                 
               
               
@@ -756,7 +804,7 @@ Description of the concepts and relationships that can exist for an agent or a c
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../transfer/" title="Transfer Learning" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../taxonomy/" title="Taxonomy" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -765,19 +813,19 @@ Description of the concepts and relationships that can exist for an agent or a c
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Transfer Learning
+                Taxonomy
               </div>
             </div>
           </a>
         
         
-          <a href="../labels/" title="Labels" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../python/" title="Python" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Labels
+                Python
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
